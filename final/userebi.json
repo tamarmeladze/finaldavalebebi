@@ -1,0 +1,18 @@
+[
+  {
+    "UserId": 1,
+    "Name": "gia",
+    "LastName": "lola",
+    "PersonalNumber": "567788888",
+    "Password": "9396",
+    "Balance": 3333.0
+  },
+  {
+    "UserId": 2,
+    "Name": "tamar",
+    "LastName": "meladze",
+    "PersonalNumber": "62001017016",
+    "Password": "9161",
+    "Balance": 400.0
+  }
+]
