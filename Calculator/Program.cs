@@ -1,8 +1,8 @@
-﻿namespace ConsoleApp1
+﻿namespace Calculator
 {
-    public class Calculator
+    internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             while (true)
             {
@@ -34,6 +34,5 @@
                 Console.Clear();
             }
         }
-
     }
 }

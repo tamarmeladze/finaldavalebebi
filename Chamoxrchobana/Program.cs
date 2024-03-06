@@ -1,11 +1,8 @@
-﻿namespace mesame
+﻿namespace Chamoxrchobana
 {
-    using System;
-    using System.Collections.Generic;
-
-    public class chamoxrchobana
+    internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             List<string> words = new()
         {
