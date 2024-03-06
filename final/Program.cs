@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 using Newtonsoft.Json;
+
 namespace finali
 {
     class Program
@@ -48,8 +48,14 @@ namespace finali
             string name = Console.ReadLine();
             Console.Write("Enter your last name: ");
             string lastName = Console.ReadLine();
-            Console.Write("Enter your personal number: ");
+            Console.Write("Enter your personal number:");
             string personalNumber = Console.ReadLine();
+
+            if (personalNumber.Length != 11)
+            {
+                Console.WriteLine("Personal number must be 11 digits long");
+                return;
+            }
 
             if (users.Exists(user => user.PersonalNumber == personalNumber))
             {
@@ -57,26 +63,22 @@ namespace finali
                 return;
             }
 
-            int userId = users.Count + 1;
+
             string password = GenerateRandomPassword();
 
+            int userId = users.Count + 1; // Assign unique ID
             User newUser = new User(userId, name, lastName, personalNumber, password, 0);
             users.Add(newUser);
             SaveData(users, usersFilePath);
-            Console.WriteLine($"User registered successfully! Your ID is: {userId}, and your password is: {password}");
+            Console.WriteLine($"User registered successfully! Your personal number is: {personalNumber}, and your password is: {password}");
         }
 
         static void Login()
         {
-            Console.Write("Enter your user ID: ");
-            int userId;
-            if (!int.TryParse(Console.ReadLine(), out userId))
-            {
-                Console.WriteLine("Invalid user ID");
-                return;
-            }
+            Console.Write("Enter your personal number: ");
+            string personalNumber = Console.ReadLine();
 
-            User currentUser = users.Find(user => user.UserId == userId);
+            User currentUser = users.Find(user => user.PersonalNumber == personalNumber);
             if (currentUser != null)
             {
                 Console.Write("Enter your password: ");
@@ -212,5 +214,6 @@ namespace finali
 
         }
     }
-
 }
+
+    

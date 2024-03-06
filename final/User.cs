@@ -6,14 +6,15 @@ using Newtonsoft.Json;
 using System.Linq;
 
 namespace finali
-{ 
+{
     class User
     {
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string PersonalNumber { get; set; }
-        public string Password { get; set; }
+        public int UserId { get; } 
+        public string Name { get; }
+        public string LastName { get; }
+        public string PersonalNumber;
+        
+        public string Password { get; }
         public double Balance { get; set; }
 
         public User(int userId, string name, string lastName, string personalNumber, string password, double balance)
@@ -27,3 +28,4 @@ namespace finali
         }
     }
 }
+
