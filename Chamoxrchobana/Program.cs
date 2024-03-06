@@ -1,8 +1,11 @@
-﻿namespace Chamoxrchobana
+﻿using System.Linq.Expressions;
+
+namespace Chamoxrchobana
 {
     internal class Program
     {
         static void Main(string[] args)
+
         {
             List<string> words = new()
         {
@@ -21,36 +24,39 @@
             List<char> guessedletters = new();
             while (tries > 0)
             {
-                Console.WriteLine("word:" + string.Join(" ", guessedword));
-                Console.WriteLine("tries left:" + tries);
-                Console.WriteLine("guess a letter");
-                char guesslet = char.Parse(Console.ReadLine());
-                if (guessedletters.Contains(guesslet))
-                {
-                    Console.WriteLine("letter already guessed, try again");
-                    continue;
-                }
-                guessedletters.Add(guesslet);
-                if (wordtoguess.Contains(guesslet))
-                {
-                    for (int i = 0; i < wordtoguess.Length; i++)
+                try {
+                    Console.WriteLine("word:" + string.Join(" ", guessedword));
+                    Console.WriteLine("tries left:" + tries);
+                    Console.WriteLine("guess a letter");
+                    char guesslet = char.Parse(Console.ReadLine());
+                    if (guessedletters.Contains(guesslet))
                     {
-                        if (wordtoguess[i] == guesslet)
+                        Console.WriteLine("letter already guessed, try again");
+                        continue;
+                    }
+                    guessedletters.Add(guesslet);
+                    if (wordtoguess.Contains(guesslet))
+                    {
+                        for (int i = 0; i < wordtoguess.Length; i++)
                         {
-                            guessedword[i] = guesslet;
+                            if (wordtoguess[i] == guesslet)
+                            {
+                                guessedword[i] = guesslet;
+                            }
                         }
                     }
+                    else
+                    { tries--; }
+                    if (string.Join("", guessedword) == wordtoguess)
+                    {
+                        Console.WriteLine("you guesses the word: " + wordtoguess);
+                        break;
+                    }
                 }
-                else
-                { tries--; }
-                if (string.Join("", guessedword) == wordtoguess)
-                {
-                    Console.WriteLine("you guesses the word: " + wordtoguess);
-                    break;
-                }
-            }
-            if (tries == 0)
-            { Console.WriteLine("you have no tries, the word was : " + wordtoguess); }
+                catch (FormatException) { Console.WriteLine("invalid input , enter one digit"); }
+                if (tries == 0)
+                { Console.WriteLine("you have no tries, the word was : " + wordtoguess); }
+            } }
+                 
         }
     }
-}
